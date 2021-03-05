@@ -34,23 +34,34 @@ const Theme = {
     body:document.querySelector('body')
   }
   refs.body.classList.add(Theme.LIGHT)
+
   refs.toggleRef.addEventListener('change',onToggleChange)
-  
+  refs.toggleRef.addEventListener('change',setLocalStorage)
+ 
+
+
+
   function onToggleChange (){
-    refs.body.classList.toggle(Theme.DARK)
-      
+   refs.body.classList.toggle(Theme.DARK)
+  
   }
 //------------------------------- localStorage ------------------------------//
-console.log(localStorage)
-localStorage.setItem('Theme', JSON.stringify(Theme));
 
 
+function setLocalStorage(e) {
+  const check = refs.toggleRef.checked;
 
+  if (check) {
+    localStorage.setItem('theme', Theme.DARK);
+  } else {
+    localStorage.removeItem('theme');
+    localStorage.setItem('theme', Theme.LIGHT);
+  }
+}
 
-const savedSettings = localStorage.getItem('Theme');
-const parsedSettings = JSON.parse(settingsFromLS);
+const themeInLocal = localStorage.getItem('theme');
 
-console.log(parsedSettings);
-
-
-
+if (themeInLocal === Theme.DARK) {
+  refs.body.classList.add(Theme.DARK);
+  refs.toggleRef.checked = true;
+}
