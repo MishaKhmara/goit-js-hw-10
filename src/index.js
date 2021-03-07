@@ -43,6 +43,7 @@ const Theme = {
 
   function onToggleChange (){
    refs.body.classList.toggle(Theme.DARK)
+   refs.body.classList.toggle(Theme.LIGHT)
    
    const check = refs.toggleRef.checked;
 
@@ -62,4 +63,4 @@ const themeInLocal = localStorage.getItem('theme');
 if (themeInLocal === Theme.DARK) {
   refs.body.classList.add(Theme.DARK);
   refs.toggleRef.checked = true;
-}else{refs.body.classList.toggle(Theme.LIGHT)};
+}else{refs.body.classList.add(Theme.LIGHT)};
